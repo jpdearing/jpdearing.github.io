@@ -18,7 +18,7 @@ body {
     line-height: 150%;
     color: #777777;
     background: #ffffff;
-    background-image: url("images/Background.png");
+    background-image: url("Background.png");
     display: flex;
     flex-direction: column;
     height: 100vh;
