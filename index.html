@@ -2,64 +2,30 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <link rel="shortcut icon" href="Assets\Images\favicon.png" />
-    <title>BIO</title>
-    <link rel="stylesheet" href="Assets\css\style.css" />
+  <meta charset="utf-8">
+  <title>Awesome Video Games</title>
+
 </head>
 
 <body>
-    <div class="about-page">
-        <div class="header-page">
-            <div class="header-container">
-                <div class="bio-name">
-                    <h1>Justin Dearing</h1>
-                </div>
-                <div class="button-links">
-                    <div class="about">
-                        <a href="index.html">About</a>
-                    </div>
-                    <div class="portfolio">
-                        <a href="portfolio.html">Portfolio</a>
-                    </div>
-                    <div class="contact">
-                        <a href="contact.html">Contact</a>
-                    </div>
 
-                </div>
+  <div class="container">
+    <h1>Video Game Search</h1>
 
-            </div>
-        </div>
-        <div class="about-body">
-            <div class="about-body-container">
-                <div class="about-body-title">
-                    <h2>About Me</h2>
-                </div>
+    <div id="games-view"></div>
 
-                <img src="Assets\Images\Profile.png" height="300px" width="300px">
+    <form id="game-form">
+      <label for="game-input">Add a Game Here</label>
+      <input type="text" id="game-input"><br>
+      <input id="add-game" type="submit" value="Add Game">
+    </form>
+    
+    <div id="games-gif-view"></div>
 
-                <p>
-                    <br> I was born and raised in a small town in Texas. I have an absolute passion for cooking, gaming, learning,
-                    and now coding. My brother and I discovered our inner nerd while disassembling and reassembling old Tandy
-                    computers. Our interest in computers quickly turned into passion, which led us to where we are now.
-                    <br>
-                    <br> In 2011 I enrolled in Texas A&amp;M - Corpus Christi's Mechanical Engineering program. This is where
-                    my wife and I first met. Of course she was not interested at first, but I can be quite persistent. I
-                    finally wore her down enough to marry me in 2017 (she always wanted me, but she'll never admit it!).
-                    <br>
-                    <br> As of the creation of this page, my wife is 19 weeks pregnant with our first child, Connor. I am truly
-                    excited for this new chapter in our lives, and I hope to one day pass my newfound coding knowledge to
-                    my children.
-                    <br>
-                </p>
-
-            </div>
-
-
-        </div>
-
-
-    </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="assets/javascript/script.js"></script>
+	
+  </div>
 </body>
 
 </html>
