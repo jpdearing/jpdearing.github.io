@@ -1,4 +1,4 @@
-
+//This is a collaborative effort between Justin Dearing and Tyrell Bopp.
 //Create an array of video games to start with.
 
 var gameArray = ["Final Fantasy", "Mass Effect", "Gears of War", "Dark Souls", "Horizon Zero Dawn", "World of Warcraft", "Command and Conquer", "Paragon", "Fallout", "Skyrim"];
@@ -27,7 +27,7 @@ renderButtons();
 //Create the call to Giphy API using the data from the buttons.
 
 
-$("button").on("click", function () {
+$(document).on("click", "button", function () {
  
   var game = $(this).attr("data-name");
 
@@ -58,8 +58,9 @@ $("button").on("click", function () {
 
 $("#add-game").on("click", function (event) {
   event.preventDefault();
-  var game = $("#game-input").val().trim();
-  gameArray.push(game);
+  var gameNew = $("#game-input").val().trim();
+  gameArray.push(gameNew);
   renderButtons();
+  console.log(renderButtons());
 });
 
