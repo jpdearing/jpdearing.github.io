@@ -2,30 +2,103 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>Awesome Video Games</title>
+    <meta charset="UTF-8">
+
+    <title>Train Schedule</title>
 
 </head>
 
 <body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="text-center">Train Schedule</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Current Train Schedule</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table border=1 class="table" id='trainTable'>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Train Name</th>
+                                    <th scope="col">Destination</th>
+                                    <th scope="col">Frequency (min)</th>
+                                    <th scope="col">Next Arrival</th>
+                                    <th scope="col">Minutes Away</th>
+                                </tr>
+                            </thead>
+                            <tbody id="trainBody">
+                                    
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Add Train</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="">Train Name</label>
+                                <input type="text" class="form-control" id="trainNameInput">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Destination</label>
+                                <input type="text" class="form-control" id="destinationInput">
+                            </div>
+                            <div class="form-group">
+                                <label for="">First Train Time (HH:MM - Military Time)</label>
+                                <input type="text" class="form-control" id="firstTrainInput">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Frequency (min)</label>
+                                <input type="text" class="form-control" id="frequencyInput">
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <div class="container">
-    <h1>GifTastic Game Gifs!</h1>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js">
+    </script>
 
-    <div id="games-view"></div>
+    <script>
+        var config = {
+            apiKey: "AIzaSyBGCdg0Fmt3imqfQqNgA1vNUBtVrNuWmjE",
+            authDomain: "train-schedule-project-381c9.firebaseapp.com",
+            databaseURL: "https://train-schedule-project-381c9.firebaseio.com",
+            projectId: "train-schedule-project-381c9",
+            storageBucket: "train-schedule-project-381c9.appspot.com",
+            messagingSenderId: "764899969283"
+          };
+          firebase.initializeApp(config);
+    </script>
 
-    <form id="game-form">
-      <label for="game-input">Gimme Game Gifs!</label>
-      <input type="text" id="game-input"><br>
-      <input id="add-game" type="submit" value="Add Game">
-    </form>
-    
-    <div id="games-gif-view"></div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+        crossorigin="anonymous">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="assets/javascript/script.js"></script>
-	
-  </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+     crossorigin="anonymous">
+     </script> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js">
+    </script>
+
+    <script src="assets/javascript/script.js">
+    </script>
+
 </body>
 
 </html>

@@ -1,66 +1,59 @@
-//This is a collaborative effort between Justin Dearing and Tyrell Bopp.
-//Create an array of video games to start with.
+//Firebase Initialization (update with Train Schedule Project info)
 
-var gameArray = ["Final Fantasy", "Mass Effect", "Gears of War", "Dark Souls", "Horizon Zero Dawn", "World of Warcraft", "Command and Conquer", "Paragon", "Fallout", "Skyrim"];
+$(document).ready(function () {
 
-// Create a function to display the game buttons.
+    var trainSchedule = firebase.database();
 
-function renderButtons() {
+    $("#submit").on("click", function () {
+        event.preventDefault();
+        var trainName = $("#trainNameInput").val().trim();
+        var destination = $("#destinationInput").val().trim();
+        var firstTrain = moment($("#firstTrainInput").val().trim(), "HH:mm").format("HH:mm");
+        var frequency = $("#frequencyInput").val().trim();
 
-  $("#games-view").empty();
+        var newTrain = {
+            name: trainName,
+            destination: destination,
+            firstTrain: firstTrain,
+            frequency: frequency,
+        };
 
-// Create a loop to run through the array of games to generate buttons for each index in the array.
+        trainSchedule.ref().push(newTrain);
 
-  for (var i = 0; i < gameArray.length; i++) {
-    var a = $("<button>");
-    a.addClass("game");
-    a.attr("id",gameArray[i])
-    a.attr("data-name", gameArray[i]);
-    a.text(gameArray[i]);
-    $("#games-view").append(a);
-  }
-}
+        console.log(newTrain.name);
+        console.log(newTrain.destination);
+        console.log(newTrain.firstTrain);
+        console.log(newTrain.frequency);
 
-renderButtons();
+        $("#trainNameInput").val("");
+        $("#destinationInput").val("");
+        $("#firstTrainInput").val("");
+        $("#frequencyInput").val("");
+
+        return false;
+
+    });
+    trainSchedule.ref().on("child_added", function (snapshot) {
+        console.log(snapshot.val());
+
+        var mostRecentAdd = snapshot.val();
+
+        var firebaseName = mostRecentAdd.name;
+        var firebaseDestination = mostRecentAdd.destination;
+        var firebaseFirstTrain = mostRecentAdd.firstTrain;
+        var firebaseFrequency = mostRecentAdd.frequency;
+        var firebaseMinutesAway = 0
+        var nextArrivalTime = null
+
+        var firstTime = moment(firebaseFirstTrain, "HH:mm").subtract(1, "years");
+        var diffTime = moment().diff(moment(firstTime), "minutes");
+        var tRemainder = diffTime % firebaseFrequency;
+        firebaseMinutesAway = firebaseFrequency - tRemainder;
+        nextArrivalTime = moment().add(firebaseMinutesAway, "minutes").calendar();
 
 
-//Create the call to Giphy API using the data from the buttons.
 
-
-$(document).on("click", "button", function () {
- 
-  var game = $(this).attr("data-name");
-
-  var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=4dRNEaTFYbZGFAteZdi8w68LLYFIR97S&q=" + game + "&limit=10&offset=0&rating=G&lang=en";
-
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  })
-    .then(function (response) {
-      var results = response.data;
-      for (var i = 0; i < results.length; i++) {
-        if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-          var gifDiv = $("<div>");
-          var rating = results[i].rating;
-          var p = $("<p>").text("Rating: " + rating);
-          var gameImage = $("<img>");
-          gameImage.attr("src", results[i].images.fixed_height.url);
-          gifDiv.append(p);
-          gifDiv.append(gameImage);
-          $("#games-gif-view").prepend(gifDiv);
-        }
-      }
+        //append data table row
+        $("#trainBody").append("<tr><td>" + firebaseName + "</td><td>" + firebaseDestination + "</td><td>" + firebaseFrequency + "</td><td>" + nextArrivalTime + "</td><td>" + firebaseMinutesAway + "</td></tr>");
     });
 });
-
-// Create a function to handle button click events.
-
-$("#add-game").on("click", function (event) {
-  event.preventDefault();
-  var gameNew = $("#game-input").val().trim();
-  gameArray.push(gameNew);
-  renderButtons();
-  console.log(renderButtons());
-});
-
